@@ -271,7 +271,7 @@
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch(`https://59eb-94-158-54-235.ngrok-free.app/salary/upload`, {
+        fetch(`https://e110-95-214-211-197.ngrok-free.app/salary/upload`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -341,7 +341,7 @@
         };
 
         // Send the user data to the backend using Fetch API
-        fetch("https://59eb-94-158-54-235.ngrok-free.app/salary/add", {
+        fetch("https://e110-95-214-211-197.ngrok-free.app/salary/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -474,7 +474,7 @@
 
     function fetchDataFromBackendExpired() {
         // Fetch data from your backend API
-//        fetch("https://59eb-94-158-54-235.ngrok-free.app/salary/expired", {
+//        fetch("https://e110-95-214-211-197.ngrok-free.app/salary/expired", {
 //            method: "GET",
 //            headers: {
 //                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -506,7 +506,7 @@
 
     function fetchDepartmentsAndPopulateDropdown() {
         // Fetch departments from your backend API
-        fetch("https://59eb-94-158-54-235.ngrok-free.app/salary/departments", {
+        fetch("https://e110-95-214-211-197.ngrok-free.app/salary/departments", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -611,7 +611,7 @@
 
 
         // Send the updated user data to the backend using Fetch API
-        fetch("https://59eb-94-158-54-235.ngrok-free.app/salary/update", {
+        fetch("https://e110-95-214-211-197.ngrok-free.app/salary/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -645,7 +645,7 @@
             const idToDelete = parseInt(userId, 10);
 
             // Call the API to delete the user using the integer idToDelete
-            fetch(`https://59eb-94-158-54-235.ngrok-free.app/salary/delete/${idToDelete}`, {
+            fetch(`https://e110-95-214-211-197.ngrok-free.app/salary/delete/${idToDelete}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${getAccessToken()}`,
