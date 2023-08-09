@@ -32,7 +32,7 @@ function GetCheck(event){
 
 
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('http://zokirov1234.jprq.live:80/auth/login', {
+  fetch('https://04bb-93-170-222-31.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

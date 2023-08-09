@@ -265,7 +265,7 @@ function uploadExcel(file) {
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch(`http://zokirov1234.jprq.live:80/salary/upload`, {
+        fetch(`https://04bb-93-170-222-31.ngrok-free.app/salary/upload`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${getAccessToken()}`,
@@ -334,7 +334,7 @@ addUserForm.addEventListener("submit", function (event) {
         };
 
         // Send the user data to the backend using Fetch API
-        fetch("http://zokirov1234.jprq.live:80/salary/add", {
+        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -447,7 +447,7 @@ function populateTableWithData(data) {
 
 function fetchDataFromBackend() {
         // Fetch data from your backend API
-         fetch("http://zokirov1234.jprq.live:80/salary/list", {
+         fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/list", {
             method: "GET",
             headers: {
                 'Content-type':'aplication/json',
@@ -469,7 +469,7 @@ function fetchDataFromBackend() {
 
 function fetchDataFromBackendExpired() {
         // Fetch data from your backend API
-//        fetch("http://zokirov1234.jprq.live:80/salary/expired", {
+//        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/expired", {
 //            method: "GET",
 //            headers: {
 //                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -492,7 +492,7 @@ getExpired(data);
 
 function fetchDepartmentsAndPopulateDropdown() {
     // Fetch departments from your backend API
-    fetch("http://zokirov1234.jprq.live:80/salary/departments", {
+    fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/departments", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -597,7 +597,7 @@ editUserForm.addEventListener("submit", function (event) {
 
 
         // Send the updated user data to the backend using Fetch API
-        fetch("http://zokirov1234.jprq.live:80/salary/update", {
+        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -631,7 +631,7 @@ function deleteUser(userId) {
             const idToDelete = parseInt(userId, 10);
 
             // Call the API to delete the user using the integer idToDelete
-            fetch(`http://zokirov1234.jprq.live:80/salary/delete/${idToDelete}`, {
+            fetch(`https://04bb-93-170-222-31.ngrok-free.app/salary/delete/${idToDelete}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${getAccessToken()}`,
