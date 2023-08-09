@@ -265,7 +265,7 @@ function uploadExcel(file) {
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch(`https://04bb-93-170-222-31.ngrok-free.app/salary/upload`, {
+        fetch(`http://localhost:8084/salary/upload`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${getAccessToken()}`,
@@ -334,7 +334,7 @@ addUserForm.addEventListener("submit", function (event) {
         };
 
         // Send the user data to the backend using Fetch API
-        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/add", {
+        fetch("http://localhost:8084/salary/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -447,7 +447,7 @@ function populateTableWithData(data) {
 
 function fetchDataFromBackend() {
         // Fetch data from your backend API
-         fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/list", {
+         fetch("http://localhost:8084/salary/list", {
             method: "GET",
             headers: {
                 'Content-type':'aplication/json',
@@ -469,7 +469,7 @@ function fetchDataFromBackend() {
 
 function fetchDataFromBackendExpired() {
         // Fetch data from your backend API
-//        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/expired", {
+//        fetch("http://localhost:8084/salary/expired", {
 //            method: "GET",
 //            headers: {
 //                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -492,7 +492,7 @@ getExpired(data);
 
 function fetchDepartmentsAndPopulateDropdown() {
     // Fetch departments from your backend API
-    fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/departments", {
+    fetch("http://localhost:8084/salary/departments", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
@@ -597,7 +597,7 @@ editUserForm.addEventListener("submit", function (event) {
 
 
         // Send the updated user data to the backend using Fetch API
-        fetch("https://04bb-93-170-222-31.ngrok-free.app/salary/update", {
+        fetch("http://localhost:8084/salary/update", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -631,7 +631,7 @@ function deleteUser(userId) {
             const idToDelete = parseInt(userId, 10);
 
             // Call the API to delete the user using the integer idToDelete
-            fetch(`https://04bb-93-170-222-31.ngrok-free.app/salary/delete/${idToDelete}`, {
+            fetch(`http://localhost:8084/salary/delete/${idToDelete}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${getAccessToken()}`,
