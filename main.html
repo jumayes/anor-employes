@@ -459,7 +459,7 @@
                 'Content-type': 'application/json',
                 "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             },
-            mode: "cors"
+            mode: "no-cors"
         })
             .then((response) => response.json())
             .then((data) => {
