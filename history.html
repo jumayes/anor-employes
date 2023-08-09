@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>History</title>
+</head>
+<body>
+<div class="main-content">
+    <div class="container containerBlock">
+
+        <div class="containerBlockSearch">
+
+            <div>
+                <label for="searchInput"></label><input type="text" id="searchInput" class="searchInput" placeholder="Search...">
+            </div>
+
+            <div class="dropdown">
+                <a href="main.html" class="history"><button class="nullBtn"><i class="fas fa-home"></i> </button></a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <table id="example" class="table bg-red" style="width:100%">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>ФИО</th>
+            <th>Управление</th>
+            <th>Отдел</th>
+            <th>Должность</th>
+            <th>Старая зарплата</th>
+            <th>Новая зарплата</th>
+            <th>Дата создания</th>
+            <th>Дата изменения</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Data will be dynamically populated here -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetchDataFromBackend();
+    });
+
+    function fetchDataFromBackend() {
+        // Fetch data from your backend API
+        fetch("https://da6c-93-170-222-31.ngrok-free.app/salary/history/list", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header if needed
+            },
+            mode: "cors",
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Populate the table with the fetched data
+                populateTableWithData(data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data from backend:", error);
+            });
+    }
+
+    function populateTableWithData(data) {
+        const tableBody = document.querySelector("#example tbody");
+        tableBody.innerHTML = ""; // Clear the existing rows
+
+        data.forEach((item, index) => {
+            // Create a new row for each item in the data array
+            const row = document.createElement("tr");
+
+            // Create and append cells with data for each row
+            const columns = ["fullName", "management", "department","lavozim" ,"oldSalary", "newSalary",  "createdAt", "changedAt"];
+            const numberCell = document.createElement("td");
+            numberCell.textContent = index + 1; // Number the rows starting from 1
+            row.appendChild(numberCell);
+
+            columns.forEach((column) => {
+                const cell = document.createElement("td");
+                cell.textContent = item[column];
+                row.appendChild(cell);
+            });
+
+            // Add the row to the table body
+            tableBody.appendChild(row);
+        });
+    }
+
+    function getAccessToken() {
+        // Implement this function to retrieve the access token if needed
+        // For example, you can store the token in localStorage when the user logs in
+        // and retrieve it here
+        return localStorage.getItem("jwtToken");
+    }
+
+
+</script>
+</body>
+</html>

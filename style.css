@@ -1,0 +1,387 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 90%;
+  height: 80%;
+  margin: auto;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  background-color: #fff;
+}
+
+ul{
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+h1 {
+  text-align: center;
+  color: #942b39;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+label {
+  margin-bottom: 3px;
+}
+table{
+  border-collapse: collapse;
+}
+table , tr,th ,td{
+ border: 1px solid #c1c1c1;
+ text-align: center;
+}
+table thead tr th {
+ background-color: #fff;
+ padding: 10px;
+}
+table tbody tr td{
+ padding: 10px;
+}
+button{
+  border:0;
+}
+
+
+
+/* Adjust the main content to make space for the button */
+.header {
+  background: url("./img/login_bg.jpg") center center no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+.header_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 0;
+}
+
+.header_menu_link {
+  color: rgb(170, 39, 39);
+  font-size: 22px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bolder;
+  padding: 5px 15px 5px 15px;
+}
+.header_menu_link:hover {
+  padding: 5px 14px;
+  transform: scale(5);
+  color: rgb(170, 39, 39);
+  border: 1px solid #942b39;
+  border-radius: 10px;
+}
+.header_logo {
+  padding: 3px;
+  border-radius: 8px;
+}
+.header_logo img{
+ background-size: cover;
+}
+
+.header-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 80px;
+}
+
+.btn-header {
+  margin-top: 15px;
+  padding: 7px;
+  background-color: #942b39;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.btn-header:hover {
+  background-color: #942b39;
+  color: aliceblue;
+}
+
+.btn-header a {
+  color: aliceblue;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#alert{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.modalExpired{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  background-color: white;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+  padding-left: 350px;
+  cursor: pointer;
+  color: rgb(31, 31, 182);
+}
+
+
+/*########################################*/
+.containerBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 20px 0px;
+}
+
+.containerBlockSearch{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.containerBlockBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.searchInput{
+  padding: 10px 10px;
+  font-size: 16px;
+  border: none;
+  border: 1px solid #942b39;
+  border-radius: 20px;
+  border-color: rgb(109, 99, 99);
+  width: 250px;
+}
+
+.fullBtn {
+  padding: 13px 40px;
+  color: white;
+  background-color: #942b39;
+  border-radius: 20px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.nullBtn {
+  width: 40px;
+  height: 40px;
+  color: white;
+  background-color: #942b39;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.close-edit{
+  float: right;
+  cursor: pointer;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px ;
+  background-color: (0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.exel {
+  padding: 2px 15px;
+  color: red;
+}
+
+.wightBtn{
+  width: 250px;
+  margin-top: 20px;
+}
+
+.addUserInput{
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  border: 1px solid #c1c1c1;
+}
+
+.razmerx{
+  width: 30px;
+  height: 30px;
+}
+
+.main-btn {
+  color: white;
+  border-radius: 20px;
+}
+
+.padding20{
+  margin: 10px 0;
+}
+
+.ysBtn{
+  border: 0;
+  background-color: #942b39;
+  padding: 8px 20px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}/*# sourceMappingURL=style.css.map */
+
+/* const deleteButton = document.createElement("button");
+            deleteButton.className = "btn btn-danger confirmDeleteBtn delete-btn example";
+            deleteButton.innerHTML = '<i class="fa-solid fa-trash icon-size"></i>';
+            actionsCell.appendChild(deleteButton); */
+
+.btn{
+  padding: 8px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.btn-primary{
+  background-color: blue;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.btn-danger{
+  background-color: #942b39;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding:  8px;
+}
+.blockWrappers{
+  width: 100%;
+  height: auto;
+  background-color: red;
+}
+.fa-solid{
+  color: white;
+}
+.history{
+  color: white;
+}
+
+
+@media (max-width:1440px){
+  .container{
+    max-width: 95%;
+  }
+  .header_top{
+    padding: 20px 0;
+  }
+  .fullBtn{
+    padding: 10px 20px;
+    color: white;
+    font-size: 14px;
+  }
+  .searchInput{
+  font-size: 14px;
+  }
+  .addUserInput{
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid #c1c1c1;
+  }
+  
+}
+
+.SuccessClassBlock{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.SuccessClassBlockBody{
+  background-color: white;
+  width: 300px;
+  height: 220px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+.successClassTitle{
+  font-size: 20px;
+  font-weight: 700;
+}
+.successClassBtn{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  padding: 7px 14px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(72, 225, 236);
+  cursor: pointer;
+}

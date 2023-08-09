@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Employees</title>
+</head>
+<body>
+    
+    <div id="alert">
+        <div class="main-content">
+
+            <div class="container containerBlock">
+    
+                <div class="containerBlockSearch">
+    
+                    <div>
+                        <label for="searchInput"></label><input type="text" id="searchInput" class="searchInput"
+                            placeholder="Поиск...">
+                    </div>
+    
+                    <div class="dropdown">
+                        <button class="dropbtn nullBtn"><i class="fas fa-filter"></i></button>
+                        <div class="dropdown-content" id="departmentFilter">
+                            <!-- Filter options will be dynamically populated here -->
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <div class="containerBlockBtn">
+    
+                    <button id="openModalBtn" class="nullBtn"><i class="fas fa-user-plus"></i></button>
+    
+                    <div id="userModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close razmerx">&times;</span>
+                            <h2>Add User</h2>
+    
+                            <form id="addUserForm">
+                                <label for="fullName">ФИО:</label>
+                                <input type="text" id="fullName" class="addUserInput" required>
+    
+                                <label for="management">Управление:</label>
+                                <input type="text" id="management" class="addUserInput" required>
+    
+                                <label for="department">Отдел:</label>
+                                <input type="text" id="department" class="addUserInput" required>
+    
+                                <label for="createdAt">Дата создания:</label>
+                                <input type="date" id="createdAt" class="addUserInput" required>
+    
+                                <label for="salary">Зарплата:</label>
+                                <input type="number" step="0.01" id="salary" class="addUserInput" required>
+    
+                                <label for="changeDate">Дата изменения:</label>
+                                <input type="date" id="changeDate" class="addUserInput" required>
+    
+    
+    
+                                <label for="lavozim">Лавозим:</label>
+                                <input type="text" id="lavozim" class="addUserInput" required>
+    
+                                <button class="main-btn fullBtn padding20" type="submit">Add User</button>
+                            </form>
+    
+                        </div>
+                    </div>
+    
+                    <a href="history.html" class="history"><button class="history nullBtn"><i
+                                class="fas fa-history"></i></button></a>
+    
+                    <button id="getExpired" class="expired nullBtn" onclick="fetchDataFromBackendExpired()"><i
+                            class="fas fa-hourglass-end"></i></button>
+    
+                    <div>
+                        <input type="file" id="excelFileInput" name="excelFile" accept=".xls,.xlsx" style="display: none">
+                        <button onclick="myFunctionBtn()" class="nullBtn"><i class="fas fa-file-excel"></i></button>
+                    </div>
+                    <a href="main.html"><button class="nullBtn"><i class="fas fa-home"></i>
+                        </button></a>
+                    <a href="index.html"><button class="nullBtn"> <i class="fas fa-sign-out-alt"></i></button></a>
+    
+                </div>
+    
+    
+            </div>
+    
+        </div>
+        <div class="container">
+    
+            <table id="example" class="table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>ФИО</th>
+                        <th>Управление</th>
+                        <th>Отдел</th>
+                        <th>Должность</th>
+                        <th>Зарплата</th>
+                        <th>Дата создания</th>
+                        <th>Дата изменения</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be dynamically populated here -->
+                </tbody>
+            </table>
+    
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-edit" id="closeEditModal">&times;</span>
+                    <h2>Edit User</h2>
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
+    
+                        <label for="editFio">ФИО:</label>
+                        <input type="text" id="editFio" class="addUserInput" required>
+    
+                        <label for="editManagement">Управление:</label>
+                        <input type="text" id="editManagement" class="addUserInput" required>
+    
+                        <label for="editDepartment">Отдел:</label>
+                        <input type="text" id="editDepartment" class="addUserInput" required>
+    
+                        <label for="editCreatedAt">Дата создания:</label>
+                        <input type="date" id="editCreatedAt" class="addUserInput" required>
+    
+                        <label for="editSalary">Зарплата:</label>
+                        <input type="number" step="0.01" id="editSalary" class="addUserInput" required>
+    
+                        <label for="editChangeDate">Дата изменения:</label>
+                        <input type="date" id="editChangeDate" class="addUserInput" required>
+    
+                        <label for="editLavozim">Лавозим:</label>
+                        <input type="text" id="editLavozim" class="addUserInput" required>
+    
+                        <button class="main-btn fullBtn padding20" type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+    
+            <div id="UserSalaryEdit" class="modalExpired">
+                <div class="modal-content">
+                    <span class="close-edit" id="closeEditExpired">&times;</span>
+                    <h2>Edit expired</h2>
+                    <form id="editSolaryForm">
+                        <input type="hidden" id="editUserId">
+    
+                        <label for="editSalary">Зарплата:</label>
+                        <input type="number" step="0.01" id="editSalary" class="addUserInput" required>
+    
+                        <button class="main-btn fullBtn padding20" type="submit">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+    
+            <div id="deleteModal" class="modal">
+                <div class="modal-content">
+                    <h2>Confirm Delete</h2>
+                    <p class="padding20">Are you sure you want to delete this user?</p>
+                    <button id="confirmDeleteBtn" class="ysBtn">Yes</button>
+                    <button id="cancelDeleteBtn" class="ysBtn padding20">No</button>
+                </div>
+    
+            </div>
+
+        </div>
+
+        <button id="myBtnCheck">asdasd</button>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    
+
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      
+    Success('successful',3)
+
+    const openModalBtn = document.getElementById("openModalBtn");
+    const userModal = document.getElementById("userModal");
+    const closeModal = document.querySelector(".close");
+    const addUserForm = document.getElementById("addUserForm");
+    const editModal = document.getElementById("editModal");
+    const salaryMadal = document.getElementById("UserSalaryEdit")
+    const deleteModal = document.getElementById("deleteModal");
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+    const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+    const editUserForm = document.getElementById("editUserForm");
+    const editUserExpired = document.getElementById("editUserForm");
+    const uploadFileBtn = document.getElementById("uploadFileBtn");
+    const excelFileInput = document.getElementById("excelFileInput");
+    const expired = document.getElementById('expired');
+
+function Success(name,choose){
+    
+    switch (choose) {
+        case 1:
+            AlerS('./img/access.png',name,'flex','Done')
+          break;
+        case 2:
+            AlerS('./img/error.png',name,'flex','Oops')
+          break;
+          case 3:
+          AlerS('./img/access.png',name,'flex','Done')
+        break;
+        default:
+          text = "Looking forward to the Weekend";
+      }
+
+}
+
+
+function AlerS(url,text,display,title){
+    const Alert = document.getElementById('alert');
+    const Block = document.createElement('div');
+    const BlockBody = document.createElement('div');
+    const Img = document.createElement('img');
+    const Title = document.createElement('p');
+    const Text = document.createElement('p');
+    const Button = document.createElement('button');
+
+    Img.src = url;
+    Img.style.width = '55px';
+    Img.style.height = '55px';
+
+    Img.className = 'successClassImg';
+    Title.className = 'successClassTitle';
+    Text.className = 'successClassText';
+    Button.className = 'successClassBtn';
+    BlockBody.className = 'SuccessClassBlockBody';
+    Block.className = ' SuccessClassBlock';
+
+    Block.style.display = display;
+    sleep(2000).then(() => {   Block.style.display = 'none'; });
+    Title.innerHTML = title;
+    Text.innerHTML = text;
+    Button.innerHTML = 'Ok'
+
+    Button.addEventListener('click',()=>{
+        Block.style.display = 'none';
+    })
+
+    BlockBody.appendChild(Img);
+    BlockBody.appendChild(Title);
+    BlockBody.appendChild(Text);
+    BlockBody.appendChild(Button);
+    Block.appendChild(BlockBody);
+    Alert.appendChild(Block);
+}
+
+    // Function to handle file upload
+function uploadExcel(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(`http://zokirov1234.jprq.live:80/salary/upload`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getAccessToken()}`,
+            },
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Response from backend:', data.message);
+                // Handle the response from the backend if needed
+                fetchDataFromBackend(); // Fetch data after successful upload to update the table
+            })
+            .catch((error) => {
+                console.error('Error uploading file:', error);
+            });
+    }
+
+function myFunctionBtn() {
+        const file = document.getElementById('excelFileInput').files[0];
+
+        if (file) {
+            uploadExcel(file);
+        } else {
+            document.getElementById('excelFileInput').click();
+        }
+    }
+
+excelFileInput.addEventListener('change', function () {
+        if (excelFileInput.files[0] !== undefined && excelFileInput.files[0] !== null) {
+            myFunctionBtn();
+        }
+    });
+
+openModalBtn.addEventListener("click", function () {
+        userModal.style.display = "block";
+    });
+
+closeModal.addEventListener("click", function () {
+        userModal.style.display = "none";
+    });
+
+function getAccessToken() {
+        return localStorage.getItem("jwtToken");
+    }
+
+addUserForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Get the form input values here and handle the addition of a new user
+        const fullName = document.getElementById("fullName").value;
+        const management = document.getElementById("management").value;
+        const department = document.getElementById("department").value;
+        const createdAt = document.getElementById("createdAt").value;
+        const salary = document.getElementById("salary").value;
+        const changeDate = document.getElementById("changeDate").value;
+        const lavozim = document.getElementById("lavozim").value;
+
+        // Create an object to hold the user data
+        const newUser = {
+            fullName: fullName,
+            management: management,
+            department: department,
+            createdAt: createdAt,
+            salary: parseFloat(salary),
+            changeDate: changeDate,
+            lavozim: lavozim,
+        };
+
+        // Send the user data to the backend using Fetch API
+        fetch("http://zokirov1234.jprq.live:80/salary/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            },
+            body: JSON.stringify(newUser),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the backend if needed
+                console.log("Response from backend:", data.message);
+
+                // Refresh the table after successful addition
+                fetchDataFromBackend();
+
+                // Reset the form and close the modal after submission
+                addUserForm.reset();
+                userModal.style.display = "none";
+            })
+            .catch((error) => {
+                console.error("Error sending data to backend:", error);
+            });
+    });
+
+function populateTableWithData(data) {
+        const tableBody = document.querySelector("#example tbody");
+        tableBody.innerHTML = ""; // Clear the existing rows
+
+        data.forEach((item, index) => {
+            // Create a new row for each item in the data array
+            const row = document.createElement("tr");
+
+            row.setAttribute("data-id", item.id);
+
+            // Create and append cells with data for each row
+            const columns = ["fullName", "management", "department", "lavozim", "salary", "createdAt", "changeDate", "status"];
+            const numberCell = document.createElement("td");
+            numberCell.textContent = index + 1; // Number the rows starting from 1
+            row.appendChild(numberCell);
+            columns.forEach((column) => {
+                const cell = document.createElement("td");
+                cell.textContent = item[column];
+                row.appendChild(cell);
+            });
+
+            const actionsCell = document.createElement("td");
+            const editButton = document.createElement("button");
+            editButton.className = "btn btn-primary edit-btn";
+            editButton.innerHTML = '<i class="fa-solid fa-pen-to-square edit-btn "></i>';
+            editButton.dataset.bsToggle = "modal";
+            editButton.dataset.bsTarget = "#editModal";
+            actionsCell.appendChild(editButton);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "btn btn-danger confirmDeleteBtn delete-btn example";
+            deleteButton.innerHTML = '<i class="fa-solid delete-btn fa-trash icon-size"></i>';
+            actionsCell.appendChild(deleteButton);
+
+            row.appendChild(actionsCell);
+
+            if (item.changeDate === undefined || item.changeDate === null) {
+                row.style.backgroundColor = '#fffaca';
+                row.style.color = 'black';
+            }
+
+            // Add the row to the table body
+            tableBody.appendChild(row);
+        });
+    }
+
+    function getExpired(data) {
+        const tableBody = document.querySelector("#example tbody");
+        tableBody.innerHTML = ""; // Clear the existing rows
+    
+        data.forEach((item, index) => {
+            // Create a new row for each item in the data array
+            const row = document.createElement("tr");
+    
+            // Create and append cells with data for each row
+            const action = "-";
+            const columns = ["fullName", "management", "department", "lavozim", "salary", "createdAt", "changeDate", "status"];
+            const numberCell = document.createElement("td");
+            numberCell.textContent = index + 1; // Number the rows starting from 1
+            row.appendChild(numberCell);
+    
+            columns.forEach((column) => {
+                const cell = document.createElement("td");
+                cell.textContent = item[column];
+                row.appendChild(cell);
+            });
+    
+            // Add the "done" symbol cell
+            const doneCell = document.createElement("td");
+            
+             // Use the checkmark symbol (✓) as the "done" symbol
+            const editButton = document.createElement("button");
+            editButton.className = "btn btn-primary edit-expired";
+            editButton.innerHTML = '<i class="fa-solid fa-pen-to-square edit-expired"></i>';
+            editButton.dataset.bsToggle = "modalExpired";
+            editButton.dataset.bsTarget = "#editModalExpired";
+            doneCell.appendChild(editButton);
+            row.appendChild(doneCell);
+    
+            // Add the row to the table body
+            tableBody.appendChild(row);
+        });
+}
+
+
+
+function fetchDataFromBackend() {
+        // Fetch data from your backend API
+         fetch("http://zokirov1234.jprq.live:80/salary/list", {
+            method: "GET",
+            headers: {
+                'Content-type':'aplication/json',
+               "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            },
+            mode: "cors"
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                // Populate the table with the fetched data
+             populateTableWithData(data);
+           })
+           .catch((error) => {        
+         console.error("Error fetching data from backend:", error);
+           }); 
+
+}
+
+function fetchDataFromBackendExpired() {
+        // Fetch data from your backend API
+//        fetch("http://zokirov1234.jprq.live:80/salary/expired", {
+//            method: "GET",
+//            headers: {
+//                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+ //           },
+  //          mode: "cors"
+ //       })
+ //           .then((response) => response.json())
+ //           .then((data) => {
+ //               // Populate the table with the fetched data
+//                getExpired(data);
+//            })
+//            .catch((error) => {
+//                console.error("Error fetching data from backend:", error);
+//            });
+const data = [
+{fullName:"expired",management:"management",department:"department",lavozim:"lavozim",salary:"500",createdAt:"createdAt",changeDate:"changeDate",status:"status"}
+];
+getExpired(data);
+    }
+
+function fetchDepartmentsAndPopulateDropdown() {
+    // Fetch departments from your backend API
+    fetch("http://zokirov1234.jprq.live:80/salary/departments", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+        },
+        mode: "cors"
+    })
+    .then((response) => response.json())
+    .then((departments) => {
+        console.log('departments =' , departments)
+        // Populate the filter dropdown with the fetched departments
+        const departmentFilterDropdown = document.getElementById("departmentFilter");
+
+        departments.forEach((department) => {
+            const option = document.createElement("a");
+            option.textContent = department; // Assuming department names are strings
+            option.classList.add("dropdown-item");
+            option.href = "#"; // You can add a link to each option if needed
+            departmentFilterDropdown.appendChild(option);
+        });
+
+        // Add click event listeners to each department filter option
+        const filterOptions = document.querySelectorAll("#departmentFilter .dropdown-item");
+        filterOptions.forEach((option) => {
+            option.addEventListener("click", function () {
+                const selectedDepartment = option.textContent;
+                filterTableByDepartment(selectedDepartment);
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error fetching departments from backend:", error);
+    });
+}
+
+function filterTableByDepartment(selectedDepartment) {
+    const tableRows = document.querySelectorAll("#example tbody tr");
+
+    tableRows.forEach((row) => {
+        const department = row.cells[3].textContent; // "Отдел" value in the row
+        if (selectedDepartment === "Все") {
+            // If "Все" is selected in the filter, show all rows
+            row.style.display = "table-row";
+        } else if (department === selectedDepartment) {
+            // Show the row if it belongs to the selected department
+            row.style.display = "table-row";
+        } else {
+            // Hide the row if it does not belong to the selected department
+            row.style.display = "none";
+        }
+    });
+}
+
+    // Call the function to fetch data and populate the table when the page loads
+document.getElementById('myBtnCheck').addEventListener("click", function () {
+        fetchDataFromBackend();
+        console.log('hello myBtn')
+       // fetchDepartmentsAndPopulateDropdown();
+    });
+
+function editUser(userId) {
+        // Get the user data from the table row using the userId
+        const userData = getUserDataById(userId);
+
+        // Populate the edit modal with the user data
+        document.getElementById("editUserId").value = userId;
+        document.getElementById("editFio").value = userData.fullName;
+        document.getElementById("editManagement").value = userData.management;
+        document.getElementById("editDepartment").value = userData.department;
+        document.getElementById("editCreatedAt").value = userData.createdAt;
+        document.getElementById("editSalary").value = userData.salary;
+        document.getElementById("editChangeDate").value = userData.changeDate;
+        document.getElementById("editLavozim").value = userData.lavozim;
+
+        // Show the edit modal
+        editModal.style.display = "block";
+    }
+
+
+editUserForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Get the form input values here and handle the editing of the user
+        const userId = document.getElementById("editUserId").value;
+        const fullName = document.getElementById("editFio").value;
+        const management = document.getElementById("editManagement").value;
+        const department = document.getElementById("editDepartment").value;
+        const createdAt = document.getElementById("editCreatedAt").value;
+        const salary = document.getElementById("editSalary").value;
+        const changeDate = document.getElementById("editChangeDate").value;
+        const lavozim = document.getElementById("editLavozim").value;
+
+        // Create an object to hold the updated user data
+        const updatedUser = {
+            id: userId,
+            fullName: fullName,
+            management: management,
+            department: department,
+            createdAt: createdAt,
+            salary: parseFloat(salary),
+            changeDate: changeDate,
+            lavozim: lavozim,
+        };
+
+
+        // Send the updated user data to the backend using Fetch API
+        fetch("http://zokirov1234.jprq.live:80/salary/update", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the backend if needed
+                console.log("Response from backend:", data.message);
+
+                // Refresh the table after successful update
+                fetchDataFromBackend();
+                editUserForm.reset();
+                editModal.style.display = "none"; // Hide the edit modal
+            })
+            .catch((error) => {
+                console.error("Error updating user:", error);
+            });
+    });
+
+    // Function to handle deleting a user
+function deleteUser(userId) {
+        // Show the delete modal
+        deleteModal.style.display = "block";
+
+        // Add event listener to confirm delete button
+        confirmDeleteBtn.addEventListener("click", function () {
+            // Convert userId to an integer using parseInt
+            const idToDelete = parseInt(userId, 10);
+
+            // Call the API to delete the user using the integer idToDelete
+            fetch(`http://zokirov1234.jprq.live:80/salary/delete/${idToDelete}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${getAccessToken()}`,
+                },
+                mode: "cors"
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Handle the response from the backend if needed
+                    console.log("User deleted:", data.message);
+
+                    // Refresh the table after successful deletion
+                    fetchDataFromBackend();
+                    deleteModal.style.display = "none"; // Hide the delete modal
+                })
+                .catch((error) => {
+                    console.error("Error deleting user:", error);
+                });
+        });
+
+        // Add event listener to cancel delete button
+        cancelDeleteBtn.addEventListener("click", function () {
+            // Hide the delete modal if user cancels
+            deleteModal.style.display = "none";
+        });
+    }
+function filterTableRows(searchValue) {
+        const tableRows = document.querySelectorAll("#example tbody tr");
+
+        tableRows.forEach((row) => {
+            const fio = row.cells[1].textContent.toLowerCase(); // "ФИО" value in lowercase
+            if (fio.includes(searchValue.toLowerCase())) {
+                // Show the row if it contains the search value
+                row.style.display = "table-row";
+            } else {
+                // Hide the row if it does not contain the search value
+                row.style.display = "none";
+            }
+        });
+    }
+
+    // Add event listener for search input
+document.getElementById("searchInput").addEventListener("input", function (event) {
+        const searchValue = event.target.value;
+        filterTableRows(searchValue);
+    });
+
+    // Function to get user data from the table row by ID
+function getUserDataById(userId) {
+        const tableRows = document.querySelectorAll("#example tbody tr");
+
+        for (let row of tableRows) {
+            if (row.dataset.id === userId) {
+                return {
+                    fullName: row.cells[1].textContent, // Use column index 1 for "ФИО"
+                    management: row.cells[2].textContent, // Use column index 2 for "Управление"
+                    department: row.cells[3].textContent, // Use column index 3 for "Отдел"
+                    lavozim: row.cells[4].textContent, // Use column index 4 for "Должность"
+                    salary: parseFloat(row.cells[5].textContent), // Use column index 5 for "Зарплата"
+                    createdAt: row.cells[6].textContent, // Use column index 6 for "Дата создания"
+                    changeDate: row.cells[7].textContent, // Use column index 7 for "Дата изменения"
+                    status: row.cells[8].textContent, // Use column index 8 for "Статус"
+                };
+            }
+        }
+
+        return null;
+    }
+
+    // Add event listeners for edit and delete buttons on table rows
+document.getElementById("example").addEventListener("click", function (event) {
+
+        const target = event.target;
+        if (target.classList.contains("edit-btn")) {
+            // Get the userId from the row data-id attribute
+            const userId = event.target.closest("tr").dataset.id;
+            editUser(userId);
+        } else if (target.classList.contains("delete-btn")) {
+            // Get the userId from the row data-id attribute
+            const userId = event.target.closest("tr").dataset.id;
+            deleteUser(userId);
+        }else if(target.classList.contains("edit-expired")){
+            salaryMadal.style.display = 'block';
+        }
+});
+
+document.getElementById("closeEditModal").addEventListener("click", function () {
+        // Hide the edit modal when the close button is clicked
+        editModal.style.display = "none";
+});
+document.getElementById("closeEditExpired").addEventListener("click", function () {
+    // Hide the edit modal when the close button is clicked
+    salaryMadal.style.display = "none";
+   // Success('You are having an error !',2)
+ Success('You have it all done !',1)
+
+});
+
+
+
+</script>
+</body>
+</html>
