@@ -457,9 +457,9 @@
             method: "GET",
             headers: {
                 'Content-type': 'application/json',
-                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+                'Authorization': `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             },
-            mode: "no-cors"
+            mode: "cors"
         })
             .then((response) => response.json())
             .then((data) => {
