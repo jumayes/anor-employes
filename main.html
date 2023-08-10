@@ -199,7 +199,7 @@
     const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
     const editUserForm = document.getElementById("editUserForm");
-    const editUserExpired = document.getElementById("editSolaryForm");
+    const editUserExpired = document.getElementById("editUserForm");
     const uploadFileBtn = document.getElementById("uploadFileBtn");
     const excelFileInput = document.getElementById("excelFileInput");
     const expired = document.getElementById('expired');
@@ -362,56 +362,6 @@
                 console.error("Error sending data to backend:", error);
             });
     });
-
-    editUserExpired.addEventListener("submit", function (event) {
-        event.preventDefault();
-        // Get the form input values here and handle the editing of the user
-        const userId = document.getElementById("editUserId").value;
-        const fullName = document.getElementById("editFio").value;
-        const management = document.getElementById("editManagement").value;
-        const department = document.getElementById("editDepartment").value;
-        const createdAt = document.getElementById("editCreatedAt").value;
-        const salary = document.getElementById("editSalary").value;
-        const changeDate = document.getElementById("editChangeDate").value;
-        const lavozim = document.getElementById("editLavozim").value;
-
-        // Create an object to hold the updated user data
-        const updatedUser = {
-            id: userId,
-            fullName: fullName,
-            management: management,
-            department: department,
-            createdAt: createdAt,
-            salary: parseFloat(salary),
-            changeDate: changeDate,
-            lavozim: lavozim,
-        };
-
-
-        // Send the updated user data to the backend using Fetch API
-        fetch("http://localhost:8084/salary/update", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
-            },
-            body: JSON.stringify(updatedUser),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the backend if needed
-                console.log("Response from backend:", data.message);
-
-                // Refresh the table after successful update
-                fetchDataFromBackend();
-                editUserForm.reset();
-                editModal.style.display = "none"; // Hide the edit modal
-            })
-            .catch((error) => {
-                console.error("Error updating user:", error);
-            });
-    });
-
 
     function populateTableWithData(data) {
         const tableBody = document.querySelector("#example tbody");
@@ -627,6 +577,20 @@
 
         // Show the edit modal
         editModal.style.display = "block";
+    };
+
+    function expiredUser(userid){
+        document.getElementById("editUserId").value = userId;
+        document.getElementById("editFio").value = userData.fullName;
+        document.getElementById("editManagement").value = userData.management;
+        document.getElementById("editDepartment").value = userData.department;
+        document.getElementById("editCreatedAt").value = userData.createdAt;
+        document.getElementById("editSalary").value = userData.salary;
+        document.getElementById("editChangeDate").value = userData.changeDate;
+        document.getElementById("editLavozim").value = userData.lavozim;
+
+        // Show the edit modal
+        editUserExpired.style.display = "block";
     }
 
 
@@ -773,6 +737,9 @@
             // Get the userId from the row data-id attribute
             const userId = event.target.closest("tr").dataset.id;
             deleteUser(userId);
+        } else if (target.classList.contains("edit-expired")) {
+            const userId = event.target.closest("tr").dataset.id;
+            expiredUser(userid);
         }
     });
 
