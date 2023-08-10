@@ -583,6 +583,7 @@
         const userData = getUserDataById(userId);
 
         document.getElementById("editUserIdExpired").value = userId;
+        console.log(document.getElementById("editUserIdExpired").value , userId)
         document.getElementById("editFio").value = userData.fullName;
         document.getElementById("editManagement").value = userData.management;
         document.getElementById("editDepartment").value = userData.department;
