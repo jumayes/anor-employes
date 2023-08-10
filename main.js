@@ -51,18 +51,15 @@ function GetCheck(event){
             method: "GET",
             headers: {
               'Content-type': 'application/json',
-              'Access-Control-Allow-Origin': 'https://anor-bn.netlify.app',
-              'Authorization': `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+              'Authorization': `Bearer ${getAccessToken()}`,
             }
           })
-              .then(response => response.json())
-              .then(data => {
+              .then((response) => response.json())
+              .then((data) => {
                 console.log(data);
-                // Populate the table with the fetched data
-                // populateTableWithData(data);
               })
-              .catch(error => {
-                console.error("Error fetching data from backend:", error);
+              .catch((error) => {
+                console.error("Error fetching data:", error);
               });
         } else {
           alert('Неверный пароль или логин');
