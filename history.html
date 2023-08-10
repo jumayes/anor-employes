@@ -56,7 +56,7 @@
 
     function fetchDataFromBackend() {
         // Fetch data from your backend API
-        fetch("https://59eb-94-158-54-235.ngrok-free.app/salary/history/list", {
+        fetch("http://localhost:8084/salary/history/list", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header if needed

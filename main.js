@@ -1,25 +1,26 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
   const loginForm = document.getElementById('loginForm');
 
   loginForm.addEventListener('submit', function(event) {
-    GetCheck(event);
+    GetCheck(event)
   });
 
   loginForm.addEventListener('keypress', function(event) {
     if (event.key === "Enter") {
-      loginForm.onsubmit();
+      loginForm.onsubmit()
     }
   });
+
+
 });
 
-function getAccessToken() {
-  return localStorage.getItem("jwtToken");
-}
+
 
 function GetCheck(event){
   event.preventDefault();
-
+  console.log(event);
   const username = document.getElementById('name').value;
   const password = document.getElementById('password').value;
 
@@ -30,9 +31,8 @@ function GetCheck(event){
   };
 
 
-
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('https://ea0e-94-158-54-235.ngrok-free.app/auth/login', {
+  fetch('http://localhost:8084/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -41,30 +41,17 @@ function GetCheck(event){
   })
       .then(response => response.json())
       .then(data => {
-        console.log('data = ', data);
+        console.log('data = ' ,data);
         // Handle the response from the backend if needed
         if (data.token) {
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
-
-          fetch("https://ea0e-94-158-54-235.ngrok-free.app/salary/get/7", {
-            method: "GET",
-            headers: {
-              'Content-type': 'application/json',
-              'Authorization': `Bearer ${getAccessToken()}`,
-            }
-          })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((error) => {
-                console.error("Error fetching data:", error);
-              });
+          // Redirect the user to the main.html page after successful login
+          window.location.href = 'main.html';
         } else {
-          alert('Неверный пароль или логин');
-          document.getElementById('name').value ='';
-          document.getElementById('password').value = '';
+          alert('Неверный пароль или логин ');
+
+          // Handle login error if necessary
         }
       })
       .catch(error => {
@@ -74,3 +61,4 @@ function GetCheck(event){
         document.getElementById('password').value = '';
       });
 }
+// Add DataTable and modal code here...
