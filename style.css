@@ -279,8 +279,10 @@ button{
   color: black;
   padding: 12px 16px;
   text-decoration: none;
-  background-color: #c1c1c1;
   display: block;
+}
+.dropdown-content a:hover{
+  background-color: #c1c1c1;
 }
 
 .dropdown:hover .dropdown-content {
