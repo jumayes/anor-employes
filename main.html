@@ -153,11 +153,11 @@
             <div class="modal-content">
                 <span class="close-edit" id="closeEditExpired">&times;</span>
                 <h2>Редактировать просрочено</h2>
-                <form id="editSolaryForm">
-                    <input type="hidden" id="editUserId">
+                <form id="editSalaryForm">
+                    <input type="hidden" id="editUserIdExpired">
 
-                    <label for="editSalary">Зарплата:</label>
-                    <input type="number" step="0.01" id="editSalary" class="addUserInput" required>
+                    <label for="editSalaryExpired">Зарплата:</label>
+                    <input type="number"  step="0.01" id="editSalaryExpired" class="addUserInput" required>
 
                     <button class="main-btn fullBtn padding20" type="submit">Сохранить изменения</button>
                 </form>
@@ -199,7 +199,7 @@
     const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
     const editUserForm = document.getElementById("editUserForm");
-    const editUserExpired = document.getElementById("editUserForm");
+    const editUserExpired = document.getElementById("editSalaryForm");
     const uploadFileBtn = document.getElementById("uploadFileBtn");
     const excelFileInput = document.getElementById("excelFileInput");
     const expired = document.getElementById('expired');
@@ -583,7 +583,7 @@
         const userData = getUserDataById(userId);
         console.log('userdata expired= ',userData)
 
-        document.getElementById("editUserId").value = userId;
+        document.getElementById("editUserIdExpired").value = userId;
         document.getElementById("editFio").value = userData.fullName;
         document.getElementById("editManagement").value = userData.management;
         document.getElementById("editDepartment").value = userData.department;
