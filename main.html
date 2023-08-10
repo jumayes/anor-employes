@@ -579,7 +579,9 @@
         editModal.style.display = "block";
     };
 
-    function expiredUser(userid){
+    function expiredUser(userId){
+        const userData = getUserDataById(userId);
+
         document.getElementById("editUserId").value = userId;
         document.getElementById("editFio").value = userData.fullName;
         document.getElementById("editManagement").value = userData.management;
