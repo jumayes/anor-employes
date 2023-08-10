@@ -136,7 +136,7 @@
                     <input type="date" id="editCreatedAt" class="addUserInput" required>
 
                     <label for="editSalary">Зарплата:</label>
-                    <input type="number" step="0.01" class="addUserInput grayBtn" readonly>
+                    <input type="number" step="0.01" id="editSalary" class="addUserInput grayBtn" readonly>
 
                     <label for="editChangeDate">Дата изменения:</label>
                     <input type="date" id="editChangeDate" class="addUserInput grayBtn" readonly>
@@ -571,7 +571,6 @@
         document.getElementById("editManagement").value = userData.management;
         document.getElementById("editDepartment").value = userData.department;
         document.getElementById("editCreatedAt").value = userData.createdAt;
-        document.getElementById("editSalary").value = userData.salary;
         document.getElementById("editChangeDate").value = userData.changeDate;
         document.getElementById("editLavozim").value = userData.lavozim;
 
