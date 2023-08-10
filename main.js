@@ -47,7 +47,27 @@ function GetCheck(event){
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
           // Redirect the user to the main.html page after successful login
-          window.location.href = 'main.html';
+          // window.location.href = 'main.html';
+
+
+          fetch("http://localhost:8084/salary/list", {
+            method: "GET",
+            headers: {
+              'Content-type': 'application/json',
+              'Authorization': `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            }
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data)
+                // Populate the table with the fetched data
+                // populateTableWithData(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching data from backend:", error);
+              });
+
+
         } else {
           alert('Неверный пароль или логин ');
           
