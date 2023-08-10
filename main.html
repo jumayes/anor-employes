@@ -581,13 +581,14 @@
 
     function expiredUser(userId){
         const userData = getUserDataById(userId);
+        console.log('userdata expired= ',userData)
 
         document.getElementById("editUserId").value = userId;
         document.getElementById("editFio").value = userData.fullName;
         document.getElementById("editManagement").value = userData.management;
         document.getElementById("editDepartment").value = userData.department;
         document.getElementById("editCreatedAt").value = userData.createdAt;
-        document.getElementById("editSalary").value = userData.salary;
+        document.getElementById("editSalary").value = 'ozodbek';
         document.getElementById("editChangeDate").value = userData.changeDate;
         document.getElementById("editLavozim").value = userData.lavozim;
 
@@ -638,7 +639,7 @@
 
                 // Refresh the table after successful update
                 fetchDataFromBackend();
-                editUserForm.reset();
+                editUserExpired.reset();
                 salaryMadal.style.display = "none"; // Hide the edit modal
             })
             .catch((error) => {
