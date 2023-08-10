@@ -581,7 +581,6 @@
 
     function expiredUser(userId){
         const userData = getUserDataById(userId);
-        console.log('userdata expired= ',userData)
 
         document.getElementById("editUserIdExpired").value = userId;
         document.getElementById("editFio").value = userData.fullName;
@@ -601,7 +600,7 @@
     editUserExpired.addEventListener("submit", function (event) {
         event.preventDefault();
         // Get the form input values here and handle the editing of the user
-        const userId = document.getElementById("editUserId").value;
+        const userId = document.getElementById("editUserIdExpired").value;
         const fullName = document.getElementById("editFio").value;
         const management = document.getElementById("editManagement").value;
         const department = document.getElementById("editDepartment").value;
