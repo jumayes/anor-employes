@@ -50,6 +50,8 @@ function GetCheck(event){
           fetch("https://3bac-94-158-54-235.ngrok-free.app/salary/list", {
             method: "GET",
             headers: {
+              'Content-type': 'application/json',
+              'Access-Control-Allow-Origin': 'https://anor-bn.netlify.app',
               'Authorization': `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             }
           })
