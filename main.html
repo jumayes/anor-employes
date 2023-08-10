@@ -213,9 +213,6 @@
             case 2:
                 AlerS('./img/error.png', name, 'flex', 'Oops')
                 break;
-            case 3:
-                AlerS('./img/access.png', name, 'flex', 'Done')
-                break;
             default:
                 text = "Looking forward to the Weekend";
         }
@@ -692,6 +689,7 @@
                 fetchDataFromBackend();
                 editUserForm.reset();
                 editModal.style.display = "none"; // Hide the edit modal
+                Success('qaleysan',1)
             })
             .catch((error) => {
                 console.error("Error updating user:", error);
@@ -808,7 +806,7 @@
         // Hide the edit modal when the close button is clicked
         salaryMadal.style.display = "none";
         // Success('You are having an error !',2)
-        Success('You have it all done !', 1)
+        // Success('You have it all done !', 1)
 
     });
 
