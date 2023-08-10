@@ -581,9 +581,7 @@
 
     function expiredUser(userId){
         const userData = getUserDataById(userId);
-
-        document.getElementById("editUserIdExpired").value = userId.id;
-        console.log(document.getElementById("editUserIdExpired").value , userId.id)
+        document.getElementById("editUserIdExpired").value = userId;
         document.getElementById("editFio").value = userData.fullName;
         document.getElementById("editManagement").value = userData.management;
         document.getElementById("editDepartment").value = userData.department;
@@ -794,6 +792,7 @@
             deleteUser(userId);
         } else if (target.classList.contains("edit-expired")) {
             const userId = event.target.closest("tr").dataset.id;
+            console.log(userId)
             expiredUser(userId);
         }
     });
