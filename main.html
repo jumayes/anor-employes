@@ -507,8 +507,7 @@
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
-            },
-            mode: "cors"
+            }
         })
             .then((response) => response.json())
             .then((departments) => {
