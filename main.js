@@ -32,7 +32,7 @@ function GetCheck(event){
 
 
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('https://3bac-94-158-54-235.ngrok-free.app/auth/login', {
+  fetch('https://ea0e-94-158-54-235.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ function GetCheck(event){
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
 
-          fetch("https://3bac-94-158-54-235.ngrok-free.app/salary/list", {
+          fetch("https://ea0e-94-158-54-235.ngrok-free.app/salary/list", {
             method: "GET",
             headers: {
               'Content-type': 'application/json',
