@@ -1,26 +1,21 @@
-
 document.addEventListener('DOMContentLoaded', function() {
 
   const loginForm = document.getElementById('loginForm');
 
   loginForm.addEventListener('submit', function(event) {
-    GetCheck(event)
+    GetCheck(event);
   });
 
   loginForm.addEventListener('keypress', function(event) {
     if (event.key === "Enter") {
-      loginForm.onsubmit()
+      loginForm.onsubmit();
     }
   });
-
-  
 });
-
-
 
 function GetCheck(event){
   event.preventDefault();
-  console.log(event);
+
   const username = document.getElementById('name').value;
   const password = document.getElementById('password').value;
 
@@ -29,7 +24,6 @@ function GetCheck(event){
     username,
     password
   };
-
 
   // Send the form data to the Java backend using Fetch API with a POST request
   fetch('https://3bac-94-158-54-235.ngrok-free.app/auth/login', {
@@ -41,14 +35,11 @@ function GetCheck(event){
   })
       .then(response => response.json())
       .then(data => {
-        console.log('data = ' ,data);
+        console.log('data = ', data);
         // Handle the response from the backend if needed
         if (data.token) {
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
-          // Redirect the user to the main.html page after successful login
-          // window.location.href = 'main.html';
-
 
           fetch("http://localhost:8084/salary/list", {
             method: "GET",
@@ -57,21 +48,19 @@ function GetCheck(event){
               'Authorization': `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             }
           })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log(data)
+              .then(response => response.json())
+              .then(data => {
+                console.log(data);
                 // Populate the table with the fetched data
                 // populateTableWithData(data);
               })
-              .catch((error) => {
+              .catch(error => {
                 console.error("Error fetching data from backend:", error);
               });
-
-
         } else {
-          alert('Неверный пароль или логин ');
-          
-          // Handle login error if necessary
+          alert('Неверный пароль или логин');
+          document.getElementById('name').value ='';
+          document.getElementById('password').value = '';
         }
       })
       .catch(error => {
@@ -81,4 +70,3 @@ function GetCheck(event){
         document.getElementById('password').value = '';
       });
 }
-// Add DataTable and modal code here...
