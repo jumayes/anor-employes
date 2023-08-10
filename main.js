@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+function getAccessToken() {
+  return localStorage.getItem("jwtToken");
+}
+
 function GetCheck(event){
   event.preventDefault();
 
@@ -24,6 +28,8 @@ function GetCheck(event){
     username,
     password
   };
+
+
 
   // Send the form data to the Java backend using Fetch API with a POST request
   fetch('https://3bac-94-158-54-235.ngrok-free.app/auth/login', {
