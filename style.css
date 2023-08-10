@@ -282,6 +282,10 @@ button{
   text-decoration: none;
   display: block;
 }
+.grayBtn{
+  background-color: #c1c1c1;
+  border-color: #c1c1c1;
+}
 .dropdown-content a:hover{
   background-color: #c1c1c1;
 }
