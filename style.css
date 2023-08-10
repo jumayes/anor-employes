@@ -285,8 +285,6 @@ button{
 .grayBtn{
   background-color: #c1c1c1;
   border-color: #c1c1c1;
-}
-.grayBtn:hover{
   cursor: auto;
 }
 .grayBtn:focus{
