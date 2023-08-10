@@ -591,10 +591,60 @@
         document.getElementById("editChangeDate").value = userData.changeDate;
         document.getElementById("editLavozim").value = userData.lavozim;
 
+
+
         // Show the edit modal
         salaryMadal.style.display = "block";
     }
 
+    editUserExpired.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Get the form input values here and handle the editing of the user
+        const userId = document.getElementById("editUserId").value;
+        const fullName = document.getElementById("editFio").value;
+        const management = document.getElementById("editManagement").value;
+        const department = document.getElementById("editDepartment").value;
+        const createdAt = document.getElementById("editCreatedAt").value;
+        const salary = document.getElementById("editSalary").value;
+        const changeDate = document.getElementById("editChangeDate").value;
+        const lavozim = document.getElementById("editLavozim").value;
+
+        // Create an object to hold the updated user data
+        const updatedUser = {
+            id: userId,
+            fullName: fullName,
+            management: management,
+            department: department,
+            createdAt: createdAt,
+            salary: parseFloat(salary),
+            changeDate: changeDate,
+            lavozim: lavozim,
+        };
+
+
+        // Send the updated user data to the backend using Fetch API
+        fetch("http://localhost:8084/salary/update", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            },
+            body: JSON.stringify(updatedUser),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the backend if needed
+                console.log("Response from backend:", data.message);
+
+                // Refresh the table after successful update
+                fetchDataFromBackend();
+                editUserForm.reset();
+                salaryMadal.style.display = "none"; // Hide the edit modal
+            })
+            .catch((error) => {
+                console.error("Error updating user:", error);
+            });
+    });
 
     editUserForm.addEventListener("submit", function (event) {
         event.preventDefault();
