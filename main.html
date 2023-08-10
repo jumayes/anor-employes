@@ -199,7 +199,7 @@
     const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
     const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
     const editUserForm = document.getElementById("editUserForm");
-    const editUserExpired = document.getElementById("editUserForm");
+    const editUserExpired = document.getElementById("editSolaryForm");
     const uploadFileBtn = document.getElementById("uploadFileBtn");
     const excelFileInput = document.getElementById("excelFileInput");
     const expired = document.getElementById('expired');
@@ -362,6 +362,55 @@
                 console.error("Error sending data to backend:", error);
             });
     });
+
+    editUserExpired.addEventListener("submit", function (event) {
+        event.preventDefault();
+        // Get the form input values here and handle the addition of a new user
+        const fullName = document.getElementById("fullName").value;
+        const management = document.getElementById("management").value;
+        const department = document.getElementById("department").value;
+        const createdAt = document.getElementById("createdAt").value;
+        const salary = document.getElementById("salary").value;
+        const changeDate = document.getElementById("changeDate").value;
+        const lavozim = document.getElementById("lavozim").value;
+
+        // Create an object to hold the user data
+        const newUser = {
+            fullName: fullName,
+            management: management,
+            department: department,
+            createdAt: createdAt,
+            salary: parseFloat(salary),
+            changeDate: changeDate,
+            lavozim: lavozim,
+        };
+
+        // Send the user data to the backend using Fetch API
+        fetch("http://localhost:8084/salary/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            },
+            body: JSON.stringify(newUser),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Handle the response from the backend if needed
+                console.log("Response from backend:", data.message);
+
+                // Refresh the table after successful addition
+                fetchDataFromBackend();
+
+                // Reset the form and close the modal after submission
+                addUserForm.reset();
+                userModal.style.display = "none";
+            })
+            .catch((error) => {
+                console.error("Error sending data to backend:", error);
+            });
+    });
+
 
     function populateTableWithData(data) {
         const tableBody = document.querySelector("#example tbody");
@@ -723,8 +772,6 @@
             // Get the userId from the row data-id attribute
             const userId = event.target.closest("tr").dataset.id;
             deleteUser(userId);
-        } else if (target.classList.contains("edit-expired")) {
-            salaryMadal.style.display = 'block';
         }
     });
 
