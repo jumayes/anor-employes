@@ -378,6 +378,7 @@
             const numberCell = document.createElement("td");
             numberCell.textContent = index + 1; // Number the rows starting from 1
             row.appendChild(numberCell);
+
             columns.forEach((column) => {
                 const cell = document.createElement("td");
                 cell.textContent = item[column];
@@ -417,6 +418,7 @@
             // Create a new row for each item in the data array
             const row = document.createElement("tr");
 
+            row.setAttribute("data-id", item.id);
             // Create and append cells with data for each row
             const action = "-";
             const columns = ["fullName", "management", "department", "lavozim", "salary", "createdAt", "changeDate", "status"];
