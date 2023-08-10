@@ -286,6 +286,10 @@ button{
   background-color: #c1c1c1;
   border-color: #c1c1c1;
 }
+.grayBtn:focus{
+  background-color: #c1c1c1;
+  border-color: #c1c1c1;
+}
 .dropdown-content a:hover{
   background-color: #c1c1c1;
 }
