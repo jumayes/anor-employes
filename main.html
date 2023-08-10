@@ -785,6 +785,7 @@
         if (target.classList.contains("edit-btn")) {
             // Get the userId from the row data-id attribute
             const userId = event.target.closest("tr").dataset.id;
+            console.log(userId)
             editUser(userId);
         } else if (target.classList.contains("delete-btn")) {
             // Get the userId from the row data-id attribute
