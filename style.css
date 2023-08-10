@@ -193,10 +193,8 @@ button{
 .searchInput{
   padding: 10px 10px;
   font-size: 16px;
-  border: none;
   border: 1px solid #942b39;
   border-radius: 20px;
-  border-color: rgb(109, 99, 99);
   width: 250px;
 }
 
@@ -227,13 +225,14 @@ button{
   float: right;
   cursor: pointer;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px ;
-  background-color: (0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 ;
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -250,7 +249,6 @@ button{
 .addUserInput{
   padding: 10px 15px;
   border-radius: 5px;
-  border: none;
   border: 1px solid #c1c1c1;
 }
 
@@ -281,17 +279,13 @@ button{
   color: black;
   padding: 12px 16px;
   text-decoration: none;
+  background-color: #c1c1c1;
   display: block;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
-}/*# sourceMappingURL=style.css.map */
-
-/* const deleteButton = document.createElement("button");
-            deleteButton.className = "btn btn-danger confirmDeleteBtn delete-btn example";
-            deleteButton.innerHTML = '<i class="fa-solid fa-trash icon-size"></i>';
-            actionsCell.appendChild(deleteButton); */
+}
 
 .btn{
   padding: 8px;
@@ -341,7 +335,6 @@ button{
   .addUserInput{
     padding: 8px 12px;
     border-radius: 5px;
-    border: none;
     border: 1px solid #c1c1c1;
   }
   
