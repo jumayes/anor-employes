@@ -47,7 +47,7 @@ function GetCheck(event){
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
 
-          fetch("http://localhost:8084/salary/get/7", {
+          fetch("https://ea0e-94-158-54-235.ngrok-free.app/salary/get/7", {
             method: "GET",
             headers: {
               'Content-type': 'application/json',
