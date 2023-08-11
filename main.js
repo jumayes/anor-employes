@@ -51,7 +51,7 @@ function GetCheck(event){
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
           // Redirect the user to the main.html page after successful login
-
+            console.log(data.token);
 
           fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
             method: "GET",
@@ -62,7 +62,9 @@ function GetCheck(event){
               .then((response) => response.json())
               .then((data) => {
                 // Populate the table with the fetched data
-                getExpired(data);
+
+                  console.log(data);
+                // getExpired(data);
               })
               .catch((error) => {
                 console.error("Error fetching data from backend:", error);
