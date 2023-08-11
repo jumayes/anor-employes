@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+function getAccessToken() {
+    return localStorage.getItem("jwtToken");
+}
+
 
 
 function GetCheck(event){
