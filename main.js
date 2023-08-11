@@ -54,7 +54,7 @@ function GetCheck(event){
           // Redirect the user to the main.html page after successful login
             console.log(data.token);
 
-          fetch("https://7ce5-93-170-222-31.ngrok-free.app/user/findAll", {
+          fetch("https://7ce5-93-170-222-31.ngrok-free.app/salary/list", {
             method: "GET",
             headers: {
                 "ngrok-skip-browser-warning": true,
@@ -85,6 +85,7 @@ function GetCheck(event){
             fetch("https://7ce5-93-170-222-31.ngrok-free.app/salary/list", {
                 method: "GET",
                 headers: {
+                    "ngrok-skip-browser-warning": true,
                     "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
                 }
             })
