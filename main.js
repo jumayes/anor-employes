@@ -32,7 +32,7 @@ function GetCheck(event){
 
 
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('http://localhost:8084/auth/login', {
+  fetch('https://9f52-93-170-222-31.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -47,7 +47,25 @@ function GetCheck(event){
           // Store the token in local storage
           localStorage.setItem('jwtToken', data.token);
           // Redirect the user to the main.html page after successful login
-          window.location.href = 'main.html';
+
+
+          fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
+            method: "GET",
+            headers: {
+              "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+            }
+          })
+              .then((response) => response.json())
+              .then((data) => {
+                // Populate the table with the fetched data
+                getExpired(data);
+              })
+              .catch((error) => {
+                console.error("Error fetching data from backend:", error);
+              });
+
+
+          // window.location.href = 'main.html';
         } else {
           alert('Неверный пароль или логин ');
 
