@@ -39,7 +39,6 @@ function GetCheck(event){
   fetch('https://7ce5-93-170-222-31.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
-        "ngrok-skip-browser-warning": true,
         'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
