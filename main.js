@@ -56,7 +56,6 @@ function GetCheck(event){
           fetch("https://7ce5-93-170-222-31.ngrok-free.app/salary/list", {
             method: "GET",
             headers: {
-                "ngrok-skip-browser-warning": true,
               "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             }
           })
@@ -84,7 +83,6 @@ function GetCheck(event){
             fetch("https://7ce5-93-170-222-31.ngrok-free.app/salary/list", {
                 method: "GET",
                 headers: {
-                    "ngrok-skip-browser-warning": true,
                     "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
                 }
             })
