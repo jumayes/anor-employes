@@ -39,7 +39,8 @@ function GetCheck(event){
   fetch('https://9f52-93-170-222-31.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+        "ngrok-skip-browser-warning": true,
+        'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   })
@@ -56,6 +57,7 @@ function GetCheck(event){
           fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
             method: "GET",
             headers: {
+                "ngrok-skip-browser-warning": true,
               "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
             }
           })
