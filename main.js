@@ -75,6 +75,27 @@ function GetCheck(event){
         } else {
           alert('Неверный пароль или логин ');
 
+
+            localStorage.setItem('jwtToken', data.token);
+            // Redirect the user to the main.html page after successful login
+            console.log(data.token);
+
+            fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
+                }
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Populate the table with the fetched data
+
+                    console.log(data);
+                    // getExpired(data);
+                })
+                .catch((error) => {
+                    console.error("Error fetching data from backend:", error);
+                });
           // Handle login error if necessary
         }
       })
