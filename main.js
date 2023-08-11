@@ -36,7 +36,7 @@ function GetCheck(event){
 
 
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('https://9f52-93-170-222-31.ngrok-free.app/auth/login', {
+  fetch('https://7ce5-93-170-222-31.ngrok-free.app/auth/login', {
     method: 'POST',
     headers: {
         "ngrok-skip-browser-warning": true,
@@ -54,7 +54,7 @@ function GetCheck(event){
           // Redirect the user to the main.html page after successful login
             console.log(data.token);
 
-          fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
+          fetch("https://7ce5-93-170-222-31.ngrok-free.app/user/findAll", {
             method: "GET",
             headers: {
                 "ngrok-skip-browser-warning": true,
@@ -82,7 +82,7 @@ function GetCheck(event){
             // Redirect the user to the main.html page after successful login
             console.log(data.token);
 
-            fetch("https://9f52-93-170-222-31.ngrok-free.app/user/findAll", {
+            fetch("https://7ce5-93-170-222-31.ngrok-free.app/user/findAll", {
                 method: "GET",
                 headers: {
                     "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
