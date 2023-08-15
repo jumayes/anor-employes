@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <title>Employees</title>
+    <link rel="icon" type="image/png" href="./img/001.png" />
+    <title>Сотрудники</title>
 </head>
 <body>
 
@@ -200,15 +201,13 @@
     const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
     const editUserForm = document.getElementById("editUserForm");
     const editUserExpired = document.getElementById("editSalaryForm");
-    const uploadFileBtn = document.getElementById("uploadFileBtn");
     const excelFileInput = document.getElementById("excelFileInput");
-    const expired = document.getElementById('expired');
 
     function Success(name, choose) {
 
         switch (choose) {
             case 1:
-                AlerS('./img/access.png', name, 'flex', 'Done')
+                AlerS('./img/access.png', name, 'flex', 'Успешно')
                 break;
             case 2:
                 AlerS('./img/error.png', name, 'flex', 'Oops')
@@ -268,7 +267,6 @@
         fetch(`http://localhost:8084/salary/upload`, {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json",
                 'Authorization': `Bearer ${getAccessToken()}`,
             },
             body: formData,
@@ -278,8 +276,10 @@
                 console.log('Response from backend:', data.message);
                 // Handle the response from the backend if needed
                 fetchDataFromBackend(); // Fetch data after successful upload to update the table
+                Success('Успешно', 1);
             })
             .catch((error) => {
+                Success('Ошибка', 2);
                 console.error('Error uploading file:', error);
             });
     }
@@ -345,8 +345,6 @@
         })
             .then((response) => response.json())
             .then((data) => {
-                // Handle the response from the backend if needed
-                console.log("Response from backend:", data.message);
 
                 // Refresh the table after successful addition
                 fetchDataFromBackend();
@@ -354,8 +352,10 @@
                 // Reset the form and close the modal after submission
                 addUserForm.reset();
                 userModal.style.display = "none";
+                Success('Успешно', 1);
             })
             .catch((error) => {
+                Success('Ошибка', 2);
                 console.error("Error sending data to backend:", error);
             });
     });
@@ -458,7 +458,6 @@
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data)
                 // Populate the table with the fetched data
                 populateTableWithData(data);
             })
@@ -474,8 +473,7 @@
            method: "GET",
            headers: {
                "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header
-                  },
-                 mode: "cors"
+                  }
               })
                   .then((response) => response.json())
                   .then((data) => {
@@ -485,19 +483,6 @@
            .catch((error) => {
                console.error("Error fetching data from backend:", error);
            });
-        const data = [
-            {
-                fullName: "expired",
-                management: "management",
-                department: "department",
-                lavozim: "lavozim",
-                salary: "500",
-                createdAt: "createdAt",
-                changeDate: "changeDate",
-                status: "status"
-            }
-        ];
-        getExpired(data);
     }
 
     function fetchDepartmentsAndPopulateDropdown() {
@@ -510,7 +495,6 @@
         })
             .then((response) => response.json())
             .then((departments) => {
-                console.log('departments =', departments)
                 // Populate the filter dropdown with the fetched departments
                 const departmentFilterDropdown = document.getElementById("departmentFilter");
 
@@ -576,7 +560,7 @@
 
         // Show the edit modal
         editModal.style.display = "block";
-    };
+    }
 
     function expiredUser(userId){
         const userData = getUserDataById(userId);
@@ -604,8 +588,6 @@
         const department = document.getElementById("editDepartment").value;
         const createdAt = document.getElementById("editCreatedAt").value;
         const salary = document.getElementById("editSalaryExpired").value;
-        console.log(salary);
-        console.log(userId)
         const changeDate = document.getElementById("editChangeDate").value;
         const lavozim = document.getElementById("editLavozim").value;
 
@@ -632,16 +614,16 @@
             body: JSON.stringify(updatedUser),
         })
             .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the backend if needed
-                console.log("Response from backend:", data.message);
+            .then(() => {
 
                 // Refresh the table after successful update
                 fetchDataFromBackend();
                 editUserExpired.reset();
+                Success('Успешно', 1);
                 salaryMadal.style.display = "none"; // Hide the edit modal
             })
             .catch((error) => {
+                Success('Ошибка', 2);
                 console.error("Error updating user:", error);
             });
     });
@@ -681,17 +663,16 @@
             body: JSON.stringify(updatedUser),
         })
             .then((response) => response.json())
-            .then((data) => {
-                // Handle the response from the backend if needed
-                console.log("Response from backend:", data.message);
+            .then(() => {
 
                 // Refresh the table after successful update
                 fetchDataFromBackend();
                 editUserForm.reset();
                 editModal.style.display = "none"; // Hide the edit modal
-                Success('hello',1);
+                Success('Успешно',1);
             })
             .catch((error) => {
+                Success('Ошибка', 2);
                 console.error("Error updating user:", error);
             });
     });
@@ -711,19 +692,18 @@
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${getAccessToken()}`,
-                },
-                mode: "cors"
+                }
             })
                 .then((response) => response.json())
-                .then((data) => {
-                    // Handle the response from the backend if needed
-                    console.log("User deleted:", data.message);
+                .then(() => {
 
                     // Refresh the table after successful deletion
                     fetchDataFromBackend();
-                    deleteModal.style.display = "none"; // Hide the delete modal
+                    deleteModal.style.display = "none";// Hide the delete modal
+                    Success('Удалено',1)
                 })
                 .catch((error) => {
+                    Success('Ошибка', 2);
                     console.error("Error deleting user:", error);
                 });
         });
@@ -785,7 +765,6 @@
         if (target.classList.contains("edit-btn")) {
             // Get the userId from the row data-id attribute
             const userId = event.target.closest("tr").dataset.id;
-            console.log(userId)
             editUser(userId);
         } else if (target.classList.contains("delete-btn")) {
             // Get the userId from the row data-id attribute
@@ -793,7 +772,6 @@
             deleteUser(userId);
         } else if (target.classList.contains("edit-expired")) {
             const userId = event.target.closest("tr").dataset.id;
-            console.log(userId)
             expiredUser(userId);
         }
     });
