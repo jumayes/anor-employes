@@ -32,7 +32,7 @@ function GetCheck(event){
 
 
   // Send the form data to the Java backend using Fetch API with a POST request
-  fetch('http://localhost:8084/auth/login', {
+  fetch('http://192.168.159.27:8084/auth/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

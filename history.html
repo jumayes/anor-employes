@@ -57,7 +57,7 @@
 
     function fetchDataFromBackend() {
         // Fetch data from your backend API
-        fetch("http://localhost:8084/salary/history/list", {
+        fetch("http://192.168.159.27:8084/salary/history/list", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${getAccessToken()}`, // Include the token in the Authorization header if needed
